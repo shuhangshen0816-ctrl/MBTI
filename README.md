@@ -45,6 +45,10 @@ npm run preview
 
 `dist/` 目录可部署到任意静态托管（Vercel、Netlify、GitHub Pages 等）。
 
+本项目已配置 GitHub Actions 自动部署到 GitHub Pages，默认站点地址：
+
+`https://shuhangshen0816-ctrl.github.io/MBTI/`
+
 ## 免责声明
 
 本测试为娱乐与自我探索用途，基于多维度心理模型估算，**非临床诊断**。
