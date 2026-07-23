@@ -1,6 +1,7 @@
 import { RadarChart } from './RadarChart';
 import { AlignmentGrid } from './AlignmentGrid';
-import type { TestResults } from '../types';
+import { SharePanel } from './SharePanel';
+import type { Answers, TestResults } from '../types';
 import {
   MBTI_DESCRIPTIONS,
   ALIGNMENT_DESCRIPTIONS,
@@ -9,7 +10,10 @@ import {
 
 interface ResultsProps {
   results: TestResults;
+  answers: Answers | null;
+  isSharedView?: boolean;
   onRestart: () => void;
+  onStartOwnTest: () => void;
 }
 
 const BIG_FIVE_LABELS: Record<string, string> = {
@@ -20,7 +24,7 @@ const BIG_FIVE_LABELS: Record<string, string> = {
   N: '神经质',
 };
 
-export function Results({ results, onRestart }: ResultsProps) {
+export function Results({ results, answers, isSharedView, onRestart, onStartOwnTest }: ResultsProps) {
   const { mbti, bigFive, enneagram, alignment, instinct } = results;
   const mbtiDesc = MBTI_DESCRIPTIONS[mbti.type] ?? '独特的神经类型组合';
   const alignDesc = ALIGNMENT_DESCRIPTIONS[alignment.alignment] ?? '';
@@ -146,10 +150,29 @@ export function Results({ results, onRestart }: ResultsProps) {
         </section>
       </div>
 
+      {isSharedView && (
+        <div className="shared-banner">
+          <p>◈ 你正在查看好友分享的神经档案</p>
+          <button type="button" className="btn btn--primary btn--sm" onClick={onStartOwnTest}>
+            ▶ 我也测一测
+          </button>
+        </div>
+      )}
+
+      {answers && (
+        <SharePanel results={results} answers={answers} />
+      )}
+
       <footer className="results-footer">
-        <button type="button" className="btn btn--ghost" onClick={onRestart}>
-          ↺ 重新扫描
-        </button>
+        {!isSharedView ? (
+          <button type="button" className="btn btn--ghost" onClick={onRestart}>
+            ↺ 重新扫描
+          </button>
+        ) : (
+          <button type="button" className="btn btn--ghost" onClick={onStartOwnTest}>
+            ▶ 开始我的扫描
+          </button>
+        )}
         <p className="disclaimer">
           本测试为娱乐与自我探索用途，基于多维度心理模型估算，非临床诊断。
         </p>

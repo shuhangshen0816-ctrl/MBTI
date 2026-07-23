@@ -738,7 +738,89 @@ body {
 
 .results-footer {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
+}
+
+/* ─── Share ─── */
+.share-panel {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  animation: fadeUp 0.5s ease 0.6s both;
+}
+
+.share-panel-header {
+  margin-bottom: 1rem;
+}
+
+.share-hint {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 0.5rem;
+}
+
+.share-url-box {
+  margin-bottom: 1rem;
+}
+
+.share-url-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  color: var(--neon-cyan);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  padding: 0.75rem 1rem;
+  letter-spacing: 0.05em;
+  outline: none;
+}
+
+.share-url-input:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.share-preview {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+}
+
+.share-preview-text {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.shared-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: rgba(255, 0, 128, 0.08);
+  border: 1px solid rgba(255, 0, 128, 0.35);
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  animation: fadeUp 0.4s ease;
+}
+
+.shared-banner p {
+  font-size: 0.9rem;
+  color: var(--neon-magenta);
+  margin: 0;
 }
 
 .disclaimer {
