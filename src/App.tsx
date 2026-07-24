@@ -13,7 +13,7 @@ import {
 import type { Answers, AppPhase, TestResults } from './types';
 import './index.css';
 
-function App() {
+export default function App() {
   const [phase, setPhase] = useState<AppPhase>('welcome');
   const [results, setResults] = useState<TestResults | null>(null);
   const [answers, setAnswers] = useState<Answers | null>(null);
@@ -58,21 +58,23 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <div className="bg-grid" aria-hidden="true" />
-      {phase === 'welcome' && <Welcome onStart={() => setPhase('quiz')} />}
-      {phase === 'quiz' && <Quiz onComplete={handleComplete} />}
-      {phase === 'results' && results && (
-        <Results
-          results={results}
-          answers={answers}
-          isSharedView={isSharedView}
-          onRestart={handleRestart}
-          onStartOwnTest={handleStartOwnTest}
-        />
-      )}
+    <div style={{ padding: 24, fontFamily: 'system-ui, sans-serif' }}>
+      <h1>Cyber Psyche</h1>
+      <p>App loaded successfully.</p>
+      <div className="app">
+        <div className="bg-grid" aria-hidden="true" />
+        {phase === 'welcome' && <Welcome onStart={() => setPhase('quiz')} />}
+        {phase === 'quiz' && <Quiz onComplete={handleComplete} />}
+        {phase === 'results' && results && (
+          <Results
+            results={results}
+            answers={answers}
+            isSharedView={isSharedView}
+            onRestart={handleRestart}
+            onStartOwnTest={handleStartOwnTest}
+          />
+        )}
+      </div>
     </div>
   );
 }
-
-export default App;
