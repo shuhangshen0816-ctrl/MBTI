@@ -2,20 +2,191 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="CYBER PSYCHE · 神经类型扫描" />
-    <meta property="og:description" content="赛博朋克风格综合人格测试：MBTI、大五人格、九型人格、DnD阵营、本能复型。一次扫描，解码五重人格矩阵。" />
-    <meta property="og:type" content="website" />
-    <meta name="description" content="Cyber Psyche — 赛博朋克风格综合人格测试：MBTI、大五人格、九型人格、DnD阵营、本能复型" />
-    <title>CYBER PSYCHE · 神经类型扫描</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/MBTI/assets/index-gIuP4Bss.js"></script>
-    <link rel="stylesheet" crossorigin href="/MBTI/assets/index-BzAf3eUk.css">
+    <title>Cyber Psyche</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      .app {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      .card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      }
+      h1 { margin: 0 0 12px; }
+      h2 { margin: 0 0 16px; }
+      button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px 14px;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        background: white;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button.primary {
+        background: #2563eb;
+        color: white;
+        border: none;
+      }
+      .result {
+        background: #0f172a;
+        color: white;
+        padding: 20px;
+        border-radius: 16px;
+      }
+      .muted {
+        color: #64748b;
+        font-size: 14px;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="app">
+      <div id="root"></div>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          id: 1,
+          text: '你更倾向于？',
+          options: ['逻辑分析', '直觉感受', '现实行动', '抽象构想'],
+        },
+        {
+          id: 2,
+          text: '面对冲突时，你更倾向于？',
+          options: ['理性沟通', '情绪表达', '迅速解决', '观察等待'],
+        },
+        {
+          id: 3,
+          text: '你更重视？',
+          options: ['结果', '关系', '效率', '意义'],
+        },
+      ];
+
+      const results = {
+        A: { title: '逻辑型人格', desc: '你善于分析、规划，习惯用逻辑理解复杂问题。' },
+        B: { title: '情感型人格', desc: '你更在乎关系与共情，表达也更自然。' },
+        C: { title: '行动型人格', desc: '你更关注效率与现实成果，执行力很强。' },
+        D: { title: '创意型人格', desc: '你更偏向抽象思考、有创造力，也更重视意义。' },
+      };
+
+      const root = document.getElementById('root');
+      const state = {
+        step: 0,
+        answers: [],
+        resultKey: null,
+      };
+
+      function getResultKey(answers) {
+        const sum = answers.reduce((a, b) => a + b, 0);
+        const keys = ['A', 'B', 'C', 'D'];
+        return keys[sum % keys.length];
+      }
+
+      function render() {
+        if (state.resultKey) {
+          const result = results[state.resultKey];
+          root.innerHTML = `
+            <div class="card">
+              <div class="result">
+                <div class="muted">你的类型</div>
+                <h2>${result.title}</h2>
+                <p>${result.desc}</p>
+              </div>
+
+              <div style="margin-top: 16px;">
+                <button class="primary" id="shareBtn">分享结果</button>
+                <button id="restartBtn">重新测试</button>
+              </div>
+            </div>
+          `;
+
+          document.getElementById('shareBtn').onclick = async () => {
+            const url = `${location.origin}${location.pathname}?result=${state.resultKey}`;
+            try {
+              if (navigator.share) {
+                await navigator.share({ title: 'Cyber Psyche', url });
+              } else if (navigator.clipboard) {
+                await navigator.clipboard.writeText(url);
+                alert('链接已复制');
+              }
+            } catch {}
+          };
+
+          document.getElementById('restartBtn').onclick = () => {
+            state.step = 0;
+            state.answers = [];
+            state.resultKey = null;
+            const url = new URL(window.location.href);
+            url.searchParams.delete('result');
+            window.history.replaceState({}, '', url);
+            render();
+          };
+          return;
+        }
+
+        const question = questions[state.step];
+        if (!question) {
+          root.innerHTML = '<div class="card"><h1>Cyber Psyche</h1><p>加载成功</p></div>';
+          return;
+        }
+
+        root.innerHTML = `
+          <div class="card">
+            <div class="muted">第 ${question.id} 题</div>
+            <h1>Cyber Psyche</h1>
+            <h2>${question.text}</h2>
+            ${question.options.map((option, index) => `
+              <button data-index="${index}">${option}</button>
+            `).join('')}
+          </div>
+        `;
+
+        root.querySelectorAll('button[data-index]').forEach((btn) => {
+          btn.onclick = () => {
+            const value = Number(btn.getAttribute('data-index'));
+            const nextAnswers = [...state.answers, value];
+
+            if (state.step < questions.length - 1) {
+              state.answers = nextAnswers;
+              state.step += 1;
+              render();
+            } else {
+              const key = getResultKey(nextAnswers);
+              state.resultKey = key;
+
+              const url = new URL(window.location.href);
+              url.searchParams.set('result', key);
+              window.history.replaceState({}, '', url);
+
+              render();
+            }
+          };
+        });
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const sharedResult = params.get('result');
+      if (sharedResult && results[sharedResult]) {
+        state.resultKey = sharedResult;
+      }
+
+      render();
+    </script>
   </body>
 </html>
