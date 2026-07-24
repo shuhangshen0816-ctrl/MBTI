@@ -27,12 +27,7 @@
         font-family: "Segoe UI", "PingFang SC", system-ui, sans-serif;
       }
 
-      .app {
-        max-width: 920px;
-        margin: 0 auto;
-        padding: 24px 16px 48px;
-      }
-
+      .app { max-width: 920px; margin: 0 auto; padding: 24px 16px 48px; }
       .shell {
         border: 1px solid var(--line);
         background: var(--panel);
@@ -44,7 +39,6 @@
         border-radius: 20px;
         padding: 20px;
       }
-
       .eyebrow {
         font-size: 12px;
         letter-spacing: 1.5px;
@@ -52,30 +46,11 @@
         color: var(--cyan);
         margin-bottom: 10px;
       }
-
-      h1 {
-        margin: 0 0 10px;
-        font-size: clamp(28px, 4vw, 42px);
-        line-height: 1.1;
-      }
-
-      h2 {
-        margin: 0 0 12px;
-        font-size: clamp(20px, 3vw, 28px);
-      }
-
-      p {
-        color: var(--text);
-        line-height: 1.65;
-      }
-
+      h1 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; }
+      h2 { margin: 0 0 12px; font-size: clamp(20px, 3vw, 28px); }
+      p { color: var(--text); line-height: 1.65; }
       .muted { color: var(--muted); }
-
-      .grid {
-        display: grid;
-        gap: 10px;
-      }
-
+      .grid { display: grid; gap: 10px; }
       .option {
         display: block;
         width: 100%;
@@ -86,27 +61,18 @@
         background: rgba(255,255,255,0.02);
         color: var(--text);
         cursor: pointer;
-        transition: 0.18s ease;
       }
-
-      .option:hover {
-        transform: translateY(-1px);
-        border-color: var(--cyan);
-        box-shadow: 0 0 14px rgba(94, 242, 255, 0.18);
-      }
-
+      .option:hover { transform: translateY(-1px); border-color: var(--cyan); }
       .primary {
         background: linear-gradient(90deg, rgba(94, 242, 255, 0.24), rgba(255, 83, 194, 0.24));
         border: 1px solid rgba(94, 242, 255, 0.7);
       }
-
       .result-card {
         background: linear-gradient(180deg, rgba(94, 242, 255, 0.08), rgba(255, 83, 194, 0.08));
         border: 1px solid rgba(94, 242, 255, 0.4);
         border-radius: 16px;
         padding: 18px;
       }
-
       .score-row {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -115,9 +81,7 @@
         padding: 10px 0;
         border-bottom: 1px solid rgba(94, 242, 255, 0.2);
       }
-
       .score-row:last-child { border-bottom: none; }
-
       .pill {
         display: inline-block;
         padding: 4px 8px;
@@ -126,7 +90,6 @@
         color: var(--cyan);
         font-size: 12px;
       }
-
       @media (max-width: 640px) {
         .app { padding: 14px 10px 32px; }
         .shell { padding: 14px; }
@@ -148,100 +111,67 @@
       ];
 
       const questions = [
-        // 认知节奏 15
-        { dim: 'cognitive', text: '你在复杂任务开始前，通常会先做哪一步？', options: ['把要点拆成小步骤再动手', '先看整体框架再决定', '直接开始做，边做边修', '先找最熟悉的旧方法'] },
-        { dim: 'cognitive', text: '当信息量很大时，你更容易？', options: ['按优先级筛出来处理', '先记住关键词再想细节', '抓住最显眼的内容', '找关系图帮自己理解'] },
-        { dim: 'cognitive', text: '你更喜欢哪种指令方式？', options: ['步骤清楚的清单', '目的明确的目标', '一条最简说明', '具备上下文的情境描述'] },
-        { dim: 'cognitive', text: '面对未知领域，你会？', options: ['查资料先建立基础', '先尝试再调整', '找人问具体做法', '先看别人怎么做再对应'] },
-        { dim: 'cognitive', text: '你在学习新技能时，通常先重视？', options: ['基础概念', '实际操作体验', '学习效率', '老师或案例示范'] },
-        { dim: 'cognitive', text: '遇到模糊信息，你会倾向于？', options: ['先把模糊点标出来', '直接猜一个合理解释', '先收集更多例子', '从已有经验联想'] },
-        { dim: 'cognitive', text: '你更愿意在做决定前？', options: ['罗列利弊', '先确认目标', '看时间紧迫度', '听他人的反馈'] },
-        { dim: 'cognitive', text: '你更容易接受哪种反馈？', options: ['具体事实反馈', '情绪化提醒', '结果对比反馈', '过程中的细节建议'] },
-        { dim: 'cognitive', text: '你处理任务时，通常会更看重？', options: ['准确率', '完成度', '效率', '可复制性'] },
-        { dim: 'cognitive', text: '如果任务突然变复杂，你会？', options: ['先停下来重新规划', '更快进入行动', '问清楚目标和边界', '先观察别人怎么做'] },
-        { dim: 'cognitive', text: '你更容易抓住问题的关键，是因为？', options: ['你习惯拆解', '你习惯整体判断', '你习惯反馈结果', '你习惯对照旧经验'] },
-        { dim: 'cognitive', text: '你更像哪种阅读方式？', options: ['先看摘要再看正文', '按顺序从头到尾', '看图和例子', '跳到重点章节'] },
-        { dim: 'cognitive', text: '你在安排待办时，更常做哪件事？', options: ['排优先级', '按时间排序', '按兴趣排序', '按任务难度排序'] },
-        { dim: 'cognitive', text: '你面对复杂问题时，第一反应通常是？', options: ['先理清结构', '先做一个可行版本', '先想可能结果', '先找相似案例'] },
-        { dim: 'cognitive', text: '你更赞同哪类工作节奏？', options: ['高结构、高规划', '高主动、快反馈', '低焦虑、稳定推进', '灵活、步步调整'] },
+        { dim: 'cognitive', text: '复杂任务开始前，你通常会先做哪一步？', options: ['把任务拆成小步骤', '先看整体框架', '直接开始做', '找熟悉的方法'] },
+        { dim: 'cognitive', text: '信息很多时，你更容易？', options: ['先按优先级筛选', '先记关键词', '抓显眼内容', '找关系图'] },
+        { dim: 'cognitive', text: '你更喜欢哪种指令方式？', options: ['步骤清单', '目标说明', '一句话简述', '场景化描述'] },
+        { dim: 'cognitive', text: '面对新领域，你会？', options: ['先查资料建立基础', '先试一下再调整', '找人问具体做法', '看别人案例'] },
+        { dim: 'cognitive', text: '学习新技能时，你先重视？', options: ['基础概念', '实际操作', '学习效率', '案例示范'] },
+        { dim: 'cognitive', text: '遇到模糊信息，你倾向于？', options: ['先标出模糊点', '直接猜一个解释', '收集更多例子', '从经验联想'] },
+        { dim: 'cognitive', text: '做决定前，你更愿意？', options: ['罗列利弊', '先确认目标', '看时间紧迫度', '听他人反馈'] },
+        { dim: 'cognitive', text: '你更容易接受哪种反馈？', options: ['具体事实反馈', '情绪提醒', '结果对比', '细节建议'] },
+        { dim: 'cognitive', text: '处理任务时，你最看重？', options: ['准确率', '完成度', '效率', '可复制性'] },
+        { dim: 'cognitive', text: '任务突然变复杂，你会？', options: ['重新规划', '更快行动', '问清目标边界', '观察别人做法'] },
 
-        // 情绪韧性 15
-        { dim: 'emotion', text: '你在压力很大时，更可能？', options: ['先停下来调整呼吸和节奏', '先把任务拆小', '直接继续推进', '找人说说'] },
-        { dim: 'emotion', text: '别人的情绪变化对你影响大吗？', options: ['会，但我会先观察', '会，有时会被带走', '较少影响我', '会，我会试着安抚'] },
-        { dim: 'emotion', text: '如果计划被打断，你会？', options: ['先稳定心态后再换方案', '立即处理冲突', '抓紧补救进度', '先看看是不是可接受'] },
-        { dim: 'emotion', text: '你在挫败面前，更可能说？', options: ['我需要一点调整', '我可以再试一次', '这次太糟糕了', '我先看看别人怎么做'] },
-        { dim: 'emotion', text: '你在情绪低落时，倾向于？', options: ['静下来收集自己的状态', '找人倾诉', '去做点事让自己动起来', '和自己独处'] },
-        { dim: 'emotion', text: '你更不喜欢哪种状态？', options: ['失控感', '无目标感', '被动等待', '被否定感'] },
-        { dim: 'emotion', text: '面对误会，你更会？', options: ['先解释清楚', '先确认感受', '先不急于回应', '先维持关系'] },
-        { dim: 'emotion', text: '你对自己情绪的觉察程度？', options: ['很高，我常常能知道自己在哪', '一般，能察觉但不总能管理', '较低，很多时候是先做再说', '中等偏高，我会通过动作来感受'] },
-        { dim: 'emotion', text: '你更愿意在失望后？', options: ['重新编排目标', '再给自己一次机会', '先暂停再说', '分析哪里出了问题'] },
-        { dim: 'emotion', text: '你更容易被哪种外界刺激影响？', options: ['他人的语气和情绪', '节奏过快的环境', '不确定的信息', '无结果的等待'] },
-        { dim: 'emotion', text: '你对情绪波动的处理方式更像？', options: ['识别并恢复', '转化为行动', '压缩后继续推进', '表达出来再整理'] },
-        { dim: 'emotion', text: '当你压力很大时，你更会？', options: ['收缩自己去保护自己', '主动寻求支持', '简单切换到另一件事', '提升自己的控制感'] },
-        { dim: 'emotion', text: '你更舒服的恢复方式是？', options: ['有规律的休息', '和人聊聊天', '做一件有成果的事情', '保持独处一段时间'] },
-        { dim: 'emotion', text: '你更容易在什么情况下情绪失衡？', options: ['被急促催促时', '信息过多时', '期待落空时', '关系出现疏离时'] },
-        { dim: 'emotion', text: '你希望别人对你情绪的回应是？', options: ['理解，而不是急着讲道理', '直接提出解决办法', '允许你先冷静', '给你一点肯定'] },
+        { dim: 'emotion', text: '压力很大时，你更可能？', options: ['停下来调整节奏', '把任务拆小', '继续推进', '找人说说'] },
+        { dim: 'emotion', text: '别人情绪变化会影响你吗？', options: ['有一点，但先观察', '会，被带走', '较少影响', '会，我会试着安抚'] },
+        { dim: 'emotion', text: '计划被打断，你会？', options: ['先稳定心态后换方案', '立即处理冲突', '补救进度', '先看是否可接受'] },
+        { dim: 'emotion', text: '你在挫败面前，更可能说？', options: ['我需要一点调整', '我可以再试一次', '这次很糟糕', '我先看看别人怎么做'] },
+        { dim: 'emotion', text: '情绪低落时，你倾向于？', options: ['静下来观察自己', '找人倾诉', '去做点事', '独处'] },
+        { dim: 'emotion', text: '你不喜欢哪种状态？', options: ['失控感', '无目标感', '被动等待', '被否定感'] },
+        { dim: 'emotion', text: '面对误会，你会？', options: ['先解释清楚', '先确认感受', '先不急着回应', '先维持关系'] },
+        { dim: 'emotion', text: '你对自己情绪的觉察程度？', options: ['很高', '一般', '较低', '中等偏高'] },
+        { dim: 'emotion', text: '失望后，你更愿意？', options: ['重新编排目标', '再给自己一次机会', '先暂停再说', '分析哪里出了问题'] },
+        { dim: 'emotion', text: '你更容易被哪种外界刺激影响？', options: ['他人的语气', '节奏过快的环境', '不确定信息', '无结果等待'] },
 
-        // 决策效率 14
-        { dim: 'decision', text: '你在做重大选择时，通常先看？', options: ['风险和成本', '时间窗口', '预期收益', '是否符合价值'] },
-        { dim: 'decision', text: '在不确定情况下，你更会？', options: ['先做一个小试验', '先收集更多信息', '先选一个能推进的方案', '先等待更合适的时机'] },
-        { dim: 'decision', text: '你在做选择时，对“快”与“稳”的偏好是？', options: ['更重视稳', '更重视快', '两者都重要', '看情况'] },
-        { dim: 'decision', text: '你更容易在什么情况下犹豫？', options: ['信息太多时', '价值冲突时', '别人意见太多时', '结果不可逆时'] },
-        { dim: 'decision', text: '你在重要事项上更像？', options: ['反复比较', '快速定夺', '独立推进', '先找共识再决定'] },
+        { dim: 'decision', text: '做重大选择时，你通常先看？', options: ['风险和成本', '时间窗口', '预期收益', '是否符合价值'] },
+        { dim: 'decision', text: '不确定时，你更会？', options: ['先做小试验', '先收集更多信息', '先选能推进方案', '等待更合适时机'] },
+        { dim: 'decision', text: '你对“快”和“稳”的偏好是？', options: ['更重视稳', '更重视快', '两者都重要', '看情况'] },
+        { dim: 'decision', text: '哪种情境最容易让你犹豫？', options: ['信息太多', '价值冲突', '别人意见太多', '结果不可逆'] },
+        { dim: 'decision', text: '你在重要事项上更像？', options: ['反复比较', '快速定夺', '独立推进', '先找共识'] },
         { dim: 'decision', text: '你更在意决策的？', options: ['长期效益', '当下结果', '风险控制', '可行性'] },
-        { dim: 'decision', text: '如果你做了一个不理想的选择，你会？', options: ['马上调整', '先接受再复盘', '先抱怨一下', '总结教训后再动'] },
-        { dim: 'decision', text: '你更愿意哪个风格的领导方式？', options: ['明确目标+步骤', '鼓励尝试', '稳住风险', '提供支持和共创'] },
-        { dim: 'decision', text: '你对“试错”怎么看？', options: ['是必要成本', '是破坏效率', '要控制范围', '不喜欢'] },
-        { dim: 'decision', text: '在做关键选择时，你本人通常偏向？', options: ['理性分析', '经验判断', '情绪感受', '场景判断'] },
-        { dim: 'decision', text: '你更在乎决策的哪一部分？', options: ['结果解释', '执行路径', '可持续性', '人际影响'] },
-        { dim: 'decision', text: '当别人对你做法有不同意见时，你会？', options: ['认真听，但保留判断', '优先跟随多数', '优先自己判断', '先看是否能协作'] },
-        { dim: 'decision', text: '当计划临近截止，你更可能？', options: ['砍掉多余步骤', '重新分配资源', '先求完成', '先求质量'] },
-        { dim: 'decision', text: '你更像哪种决策方式？', options: ['精确分析型', '快速行动型', '协商共识型', '经验回溯型'] },
+        { dim: 'decision', text: '做错选择后，你会？', options: ['马上调整', '先接受再复盘', '先抱怨一下', '总结教训后再动'] },
+        { dim: 'decision', text: '你更喜欢哪种领导方式？', options: ['清晰目标+步骤', '鼓励尝试', '稳住风险', '提供支持和共创'] },
+        { dim: 'decision', text: '你怎么看“试错”？', options: ['必要成本', '破坏效率', '要控制范围', '不喜欢'] },
+        { dim: 'decision', text: '做关键选择时，你通常偏向？', options: ['理性分析', '经验判断', '情绪感受', '场景判断'] },
 
-        // 社交影响 14
-        { dim: 'social', text: '你在团队里更容易扮演什么角色？', options: ['推进者', '观察者', '协调者', '鼓励者'] },
-        { dim: 'social', text: '当别人说出强烈观点时，你最可能做什么？', options: ['先整理再回应', '马上表达己见', '先让气氛缓下来', '找共同点'] },
-        { dim: 'social', text: '你在社交场合里更偏向？', options: ['主动开场', '观察再决定', '只和熟悉的人说', '以服务为主'] },
-        { dim: 'social', text: '别人向你求助时，你更希望对方？', options: ['具体说明需求', '告诉你情绪状态', '给你空间自己想', '说明你能帮助的边界'] },
-        { dim: 'social', text: '你更在意他人对你的评价里哪类内容？', options: ['能力', '靠谱度', '情绪安全感', '亲和度'] },
-        { dim: 'social', text: '当你和别人意见不一致时，你倾向于？', options: ['换角度重述自己的看法', '先保持关系', '用事实说服', '先停下来放轻松'] },
-        { dim: 'social', text: '你的社交影响力通常来自？', options: ['逻辑表达清晰', '情绪陪伴能力', '行动成果', '耐心倾听'] },
-        { dim: 'social', text: '你在团队冲突中更可能？', options: ['调停', '中立观察', '强势推动', '先给关怀'] },
+        { dim: 'social', text: '你在团队中更容易扮演什么角色？', options: ['推进者', '观察者', '协调者', '鼓励者'] },
+        { dim: 'social', text: '别人强烈表达观点时，你最可能？', options: ['先整理再回应', '马上表达己见', '先让气氛缓下来', '找共同点'] },
+        { dim: 'social', text: '你在社交场合里更偏向？', options: ['主动开场', '先观察再决定', '只和熟人说', '以服务为主'] },
+        { dim: 'social', text: '别人找你帮忙时，你更希望对方？', options: ['具体说明需求', '说明情绪状态', '给你自己想的空间', '说明边界'] },
+        { dim: 'social', text: '你最重视别人对你的评价里哪部分？', options: ['能力', '靠谱度', '情绪安全感', '亲和度'] },
+        { dim: 'social', text: '和别人意见不一致时，你倾向于？', options: ['换角度重述', '先保持关系', '用事实说服', '先停下来放轻松'] },
+        { dim: 'social', text: '你的影响力通常来自？', options: ['逻辑表达清晰', '情绪陪伴', '行动成果', '耐心倾听'] },
+        { dim: 'social', text: '在团队冲突里，你更可能？', options: ['调停', '中立观察', '强势推动', '先关怀'] },
         { dim: 'social', text: '你更希望被别人看作？', options: ['可靠的人', '有趣的人', '有能力的人', '懂人情的人'] },
-        { dim: 'social', text: '你倾向于通过什么方式建立信任？', options: ['按时跟进', '真诚倾听', '给对方空间', '帮助对方解决实际问题'] },
-        { dim: 'social', text: '你对社交节奏的偏好是？', options: ['深度对话', '轻松聊天', '任务协作', '高频互动'] },
-        { dim: 'social', text: '如果对方不回应，你会？', options: ['过一会重新试一次', '先看对方状态', '把话题换一下', '不再强行推进'] },
-        { dim: 'social', text: '你最希望别人对你说的评价是？', options: ['你很稳', '你很懂我', '你很厉害', '你很有感染力'] },
-        { dim: 'social', text: '你在关系中更容易感到被影响的是？', options: ['他人的情绪', '他人的需求', '他人的期望', '他人的反应'] },
+        { dim: 'social', text: '建立信任时，你更倾向于？', options: ['按时跟进', '真诚倾听', '给对方空间', '帮助解决实际问题'] },
 
-        // 适应力 14
-        { dim: 'adapt', text: '当环境突然变化时，你更容易？', options: ['迅速更新计划', '先确认变化内容', '先反应再思考', '先找更稳定的参考'] },
-        { dim: 'adapt', text: '你遇到临时变化时，更可接受的是？', options: ['明确说明新安排', '减少信息量', '给点时间缓冲', '允许试错'] },
-        { dim: 'adapt', text: '你在新环境里的适应方式更像？', options: ['先观察再行动', '先参与再总结', '先找人帮忙', '先自己找规则'] },
+        { dim: 'adapt', text: '环境突然变化时，你更容易？', options: ['快速更新计划', '先确认变化内容', '先反应再思考', '找更稳定参考'] },
+        { dim: 'adapt', text: '临时变化时，你更能接受？', options: ['明确新安排', '减少信息量', '给点缓冲时间', '允许试错'] },
+        { dim: 'adapt', text: '新环境里，你的适应方式更像？', options: ['先观察再行动', '先参与再总结', '先找人帮忙', '先自己找规则'] },
         { dim: 'adapt', text: '你对“不确定性”的容忍度？', options: ['中等偏低', '中等', '中等偏高', '很高'] },
-        { dim: 'adapt', text: '你会更愿意怎么面对突发情况？', options: ['做一个临时方案', '先稳住情绪', '先找熟悉规则', '先找人一起分担'] },
+        { dim: 'adapt', text: '面对突发情况，你更愿意？', options: ['做临时方案', '先稳住情绪', '先找熟悉规则', '找人分担'] },
         { dim: 'adapt', text: '你认为自己在变化中更像？', options: ['适应者', '守住核心', '灵活重建者', '前置准备者'] },
-        { dim: 'adapt', text: '如果项目目标突然变了，你会？', options: ['重新拆分目标', '先确认要不要坚持', '先做好调研再决策', '先看影响面'] },
-        { dim: 'adapt', text: '你更容易对哪类变化产生压力？', options: ['节奏突然加快', '规则突然改变', '人突然离开', '目标模糊不清'] },
-        { dim: 'adapt', text: '流程出现意外时，你会更想？', options: ['留一个替代路径', '先保证结果稳定', '讲清楚为什么变化', '给自己缓冲时间'] },
-        { dim: 'adapt', text: '你面对未知环境，更像？', options: ['先找可靠信息', '先看局势', '先动手试一下', '先去找熟人协作'] },
-        { dim: 'adapt', text: '你最怕哪种“失控”？', options: ['计划被打乱', '无人可依靠', '许多事情同时来', '无法解释现状'] },
-        { dim: 'adapt', text: '你对突发变化的恢复方式更像？', options: ['立刻重整', '先放松再行动', '先分析背景', '先借力完成'] },
-        { dim: 'adapt', text: '你做环境适配时，更偏向？', options: ['前置准备', '即时反馈', '逐步接触', '稳定自己再接触'] },
-        { dim: 'adapt', text: '当生活节奏被打断时，你的反应更像？', options: ['更重视恢复秩序', '尽快重新投入', '先重新确认自己', '先寻找新的可能'] }
+        { dim: 'adapt', text: '目标突然变了，你会？', options: ['重新拆分目标', '确认是否坚持', '先调研再决策', '先看影响面'] },
+        { dim: 'adapt', text: '你更容易对哪类变化产生压力？', options: ['节奏突然加快', '规则突然改变', '人突然离开', '目标模糊'] },
+        { dim: 'adapt', text: '流程出现意外，你更想？', options: ['留替代路径', '保证结果稳定', '讲清变化原因', '给自己缓冲时间'] },
+        { dim: 'adapt', text: '面对未知环境，你更像？', options: ['先找可靠信息', '先看局势', '先动手试一下', '找熟人协作'] }
       ];
 
       const state = {
+        mode: 'home',
         current: 0,
         answers: [],
-        scores: {
-          cognitive: 0,
-          emotion: 0,
-          decision: 0,
-          social: 0,
-          adapt: 0,
-        },
-        finished: false,
+        scores: { cognitive: 0, emotion: 0, decision: 0, social: 0, adapt: 0 },
         shareText: '',
       };
 
@@ -272,6 +202,68 @@
           parts.push(`${dim.title}：${label}（${value}分）`);
         });
         return parts.join('；');
+      }
+
+      function renderHome() {
+        root.innerHTML = `
+          <div class="shell">
+            <div class="eyebrow">Cyber Psyche</div>
+            <h1>赛博精神扫描</h1>
+            <p>
+              这是一个基于五个维度的综合测试：认知节奏、情绪韧性、决策效率、社交影响、适应力。  
+              题目具体、易懂、可直接选择。完成后会给你一份清晰的五维总结。
+            </p>
+            <div style="margin-top: 20px;" class="grid">
+              <button id="startBtn" class="primary">开始测试</button>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('startBtn').onclick = () => {
+          state.mode = 'quiz';
+          render();
+        };
+      }
+
+      function renderQuestion() {
+        const q = questions[state.current];
+        if (!q) return;
+
+        root.innerHTML = `
+          <div class="shell">
+            <div class="eyebrow">五维综合测试</div>
+            <h1>Cyber Psyche</h1>
+            <p class="muted">第 ${state.current + 1} / ${questions.length} 题</p>
+            <h2>${q.text}</h2>
+            <div class="grid">
+              ${q.options.map((option, index) => `
+                <button class="option" data-value="${index}">${option}</button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        root.querySelectorAll('[data-value]').forEach((btn) => {
+          btn.onclick = () => {
+            const value = Number(btn.getAttribute('data-value'));
+            const qDim = questions[state.current].dim;
+            state.answers.push(value);
+            state.scores[qDim] += value + 1;
+
+            if (state.current < questions.length - 1) {
+              state.current += 1;
+              renderQuestion();
+            } else {
+              const scorePayload = encodeShare(state.scores);
+              const url = new URL(window.location.href);
+              url.searchParams.set('share', scorePayload);
+              window.history.replaceState({}, '', url);
+              state.mode = 'results';
+              state.shareText = scorePayload;
+              render();
+            }
+          };
+        });
       }
 
       function renderResults() {
@@ -323,16 +315,16 @@
               await navigator.share(shareData);
             } else if (navigator.clipboard) {
               await navigator.clipboard.writeText(shareData.url);
-              alert('分享链接已复制');
+              alert('链接已复制');
             }
           } catch {}
         };
 
         document.getElementById('restartBtn').onclick = () => {
+          state.mode = 'home';
           state.current = 0;
           state.answers = [];
           state.scores = { cognitive: 0, emotion: 0, decision: 0, social: 0, adapt: 0 };
-          state.finished = false;
           state.shareText = '';
           const url = new URL(window.location.href);
           url.searchParams.delete('share');
@@ -341,55 +333,31 @@
         };
       }
 
-      function renderQuestion() {
-        const q = questions[state.current];
-        if (!q) return;
-
-        root.innerHTML = `
-          <div class="shell">
-            <div class="eyebrow">五维综合测试</div>
-            <h1>Cyber Psyche</h1>
-            <p class="muted">第 ${state.current + 1} / ${questions.length} 题</p>
-            <h2>${q.text}</h2>
-            <div class="grid">
-              ${q.options.map((option, index) => `
-                <button class="option" data-value="${index}">${option}</button>
-              `).join('')}
-            </div>
-          </div>
-        `;
-
-        root.querySelectorAll('[data-value]').forEach((btn) => {
-          btn.onclick = () => {
-            const value = Number(btn.getAttribute('data-value'));
-            const qIndex = state.current;
-            const qDim = questions[qIndex].dim;
-            state.answers.push(value);
-            state.scores[qDim] += value + 1;
-
-            if (state.current < questions.length - 1) {
-              state.current += 1;
-              renderQuestion();
-            } else {
-              state.finished = true;
-              const url = new URL(window.location.href);
-              url.searchParams.set('share', encodeShare(state.scores));
-              window.history.replaceState({}, '', url);
-              renderResults();
-            }
-          };
-        });
-      }
-
       function render() {
         const query = new URLSearchParams(window.location.search);
         const share = query.get('share');
+
         if (share) {
+          state.mode = 'results';
           state.shareText = share;
           renderResults();
           return;
         }
-        renderQuestion();
+
+        if (state.mode === 'home') {
+          renderHome();
+          return;
+        }
+
+        if (state.mode === 'quiz') {
+          renderQuestion();
+          return;
+        }
+
+        if (state.mode === 'results') {
+          renderResults();
+          return;
+        }
       }
 
       render();
