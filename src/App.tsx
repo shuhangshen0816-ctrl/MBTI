@@ -58,23 +58,25 @@ export default function App() {
   };
 
   return (
-    <div style={{ padding: 24, fontFamily: 'system-ui, sans-serif' }}>
-      <h1>Cyber Psyche</h1>
-      <p>App loaded successfully.</p>
-      <div className="app">
-        <div className="bg-grid" aria-hidden="true" />
-        {phase === 'welcome' && <Welcome onStart={() => setPhase('quiz')} />}
-        {phase === 'quiz' && <Quiz onComplete={handleComplete} />}
-        {phase === 'results' && results && (
-          <Results
-            results={results}
-            answers={answers}
-            isSharedView={isSharedView}
-            onRestart={handleRestart}
-            onStartOwnTest={handleStartOwnTest}
-          />
-        )}
+    <div className="app">
+      <div className="bg-ambient" aria-hidden="true">
+        <div className="orb orb--cyan" />
+        <div className="orb orb--magenta" />
+        <div className="orb orb--purple" />
       </div>
+      <div className="bg-grid" aria-hidden="true" />
+      <div className="scanlines" aria-hidden="true" />
+      {phase === 'welcome' && <Welcome onStart={() => setPhase('quiz')} />}
+      {phase === 'quiz' && <Quiz onComplete={handleComplete} />}
+      {phase === 'results' && results && (
+        <Results
+          results={results}
+          answers={answers}
+          isSharedView={isSharedView}
+          onRestart={handleRestart}
+          onStartOwnTest={handleStartOwnTest}
+        />
+      )}
     </div>
   );
 }
